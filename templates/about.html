@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-header">
+        <h1>About Us</h1>
+        <p class="lead">Learn more about our mission and values</p>
+    </div>
+
+    <section class="about-content">
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>We are dedicated to providing innovative web solutions that help businesses and individuals achieve their goals. Our commitment to excellence and user-centered design drives everything we do.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo"></div>
+                    <h3>John Doe</h3>
+                    <p>Lead Developer</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo"></div>
+                    <h3>Jane Smith</h3>
+                    <p>UX Designer</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo"></div>
+                    <h3>Mike Johnson</h3>
+                    <p>Project Manager</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Innovation</h3>
+                    <p>Pushing boundaries and embracing new technologies</p>
+                </div>
+                <div class="value-card">
+                    <h3>Quality</h3>
+                    <p>Delivering excellence in every project</p>
+                </div>
+                <div class="value-card">
+                    <h3>Integrity</h3>
+                    <p>Building trust through honest relationships</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+}
+
+.about-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.lead {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.about-section {
+    margin-bottom: 4rem;
+}
+
+.about-section h2 {
+    color: var(--dark-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+}
+
+.team-member h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.value-card {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.value-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .about-header h1 {
+        font-size: 2rem;
+    }
+    
+    .team-grid,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

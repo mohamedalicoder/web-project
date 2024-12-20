@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<div class="contact-container">
+    <div class="contact-header">
+        <h1>Contact Us</h1>
+        <p class="lead">Get in touch with our team</p>
+    </div>
+
+    <div class="contact-content">
+        <div class="contact-info">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Address</h3>
+                <p>123 Business Street<br>New York, NY 10001</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+1 (555) 123-4567</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>info@example.com</p>
+            </div>
+        </div>
+
+        <div class="contact-form-container">
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <h2>Find Us</h2>
+        <div class="map">
+            <!-- Replace with actual map embed code -->
+            <div class="map-placeholder">
+                Map will be displayed here
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+}
+
+.contact-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.lead {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.info-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.contact-form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.map-container {
+    margin-top: 3rem;
+}
+
+.map-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.map {
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    color: var(--dark-color);
+}
+
+@media (max-width: 768px) {
+    .contact-header h1 {
+        font-size: 2rem;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        order: 2;
+    }
+    
+    .contact-form-container {
+        order: 1;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Validate form
+        if (!validateForm(contactForm)) {
+            return;
+        }
+
+        // Collect form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        // Store in local storage for demo purposes
+        StorageManager.set('lastContactMessage', formData);
+
+        // Clear form
+        contactForm.reset();
+
+        // Show success message
+        alert('Message sent successfully!');
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block title %}Services{% endblock %}
+
+{% block content %}
+<div class="services-container">
+    <div class="services-header">
+        <h1>Our Services</h1>
+        <p class="lead">Discover what we can do for you</p>
+    </div>
+
+    <section class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <h2>Web Development</h2>
+            <p>Custom web applications built with modern technologies and best practices.</p>
+            <ul class="service-features">
+                <li>Responsive Design</li>
+                <li>Frontend Development</li>
+                <li>Backend Integration</li>
+                <li>API Development</li>
+            </ul>
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h2>Mobile Apps</h2>
+            <p>Native and cross-platform mobile applications for iOS and Android.</p>
+            <ul class="service-features">
+                <li>iOS Development</li>
+                <li>Android Development</li>
+                <li>Cross-platform Solutions</li>
+                <li>App Maintenance</li>
+            </ul>
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Learn More</a>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-server"></i>
+            </div>
+            <h2>Cloud Services</h2>
+            <p>Scalable cloud solutions for your business needs.</p>
+            <ul class="service-features">
+                <li>Cloud Migration</li>
+                <li>Server Management</li>
+                <li>Database Solutions</li>
+                <li>Security Services</li>
+            </ul>
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Explore</a>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h2>Digital Marketing</h2>
+            <p>Comprehensive digital marketing strategies to grow your business.</p>
+            <ul class="service-features">
+                <li>SEO Optimization</li>
+                <li>Social Media Marketing</li>
+                <li>Content Strategy</li>
+                <li>Analytics & Reporting</li>
+            </ul>
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Start Now</a>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <h2>Pricing Plans</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">$99<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>5 Pages</li>
+                    <li>Basic SEO</li>
+                    <li>Mobile Responsive</li>
+                    <li>24/7 Support</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Choose Plan</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <h3>Professional</h3>
+                <div class="price">$199<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>10 Pages</li>
+                    <li>Advanced SEO</li>
+                    <li>Mobile Responsive</li>
+                    <li>24/7 Priority Support</li>
+                    <li>Custom Features</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Choose Plan</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom</div>
+                <ul class="pricing-features">
+                    <li>Unlimited Pages</li>
+                    <li>Premium SEO</li>
+                    <li>Custom Development</li>
+                    <li>Dedicated Support</li>
+                    <li>Priority Features</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.services-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+}
+
+.services-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.lead {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.service-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h2 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.service-features li {
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.pricing-section {
+    margin-top: 4rem;
+}
+
+.pricing-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.pricing-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.pricing-card.featured {
+    border: 2px solid var(--primary-color);
+    transform: scale(1.05);
+}
+
+.pricing-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+}
+
+.price span {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.pricing-features li {
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+@media (max-width: 768px) {
+    .services-header h1 {
+        font-size: 2rem;
+    }
+    
+    .pricing-card.featured {
+        transform: none;
+    }
+}
+</style>
+{% endblock %}

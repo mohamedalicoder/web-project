@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-avatar">
+            <img src="https://via.placeholder.com/150" alt="Profile Avatar">
+        </div>
+        <div class="profile-info">
+            <h1>{{ current_user.username }}</h1>
+            <p>{{ current_user.email }}</p>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <div class="profile-section">
+            <div class="section-header">
+                <h2>Account Settings</h2>
+                <button class="btn btn-primary edit-btn" data-target="account-form">Edit</button>
+            </div>
+            <form id="account-form" class="profile-form" style="display: none;">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" value="{{ current_user.username }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" value="{{ current_user.email }}">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="profile-section">
+            <div class="section-header">
+                <h2>Change Password</h2>
+                <button class="btn btn-primary edit-btn" data-target="password-form">Edit</button>
+            </div>
+            <form id="password-form" class="profile-form" style="display: none;">
+                <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" name="current-password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" name="new-password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" class="form-control">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                    <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="profile-section">
+            <div class="section-header">
+                <h2>Preferences</h2>
+                <button class="btn btn-primary edit-btn" data-target="preferences-form">Edit</button>
+            </div>
+            <form id="preferences-form" class="profile-form" style="display: none;">
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="email-notifications">
+                        Receive email notifications
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="newsletter">
+                        Subscribe to newsletter
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Preferences</button>
+                    <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="profile-section danger-zone">
+            <div class="section-header">
+                <h2>Danger Zone</h2>
+            </div>
+            <div class="danger-zone-content">
+                <p>Once you delete your account, there is no going back. Please be certain.</p>
+                <button class="btn btn-danger" id="delete-account">Delete Account</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info h1 {
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.profile-info p {
+    color: #666;
+}
+
+.profile-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    margin: 0;
+    color: var(--dark-color);
+}
+
+.profile-form {
+    margin-top: 1.5rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-secondary {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.danger-zone {
+    border: 1px solid var(--danger-color);
+}
+
+.danger-zone-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.danger-zone-content p {
+    margin: 0;
+    color: var(--danger-color);
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .danger-zone-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Toggle forms
+    const editButtons = document.querySelectorAll('.edit-btn');
+    const cancelButtons = document.querySelectorAll('.cancel-btn');
+    const forms = document.querySelectorAll('.profile-form');
+
+    editButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetForm = document.getElementById(btn.dataset.target);
+            targetForm.style.display = 'block';
+            btn.style.display = 'none';
+        });
+    });
+
+    cancelButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const form = btn.closest('.profile-form');
+            const editBtn = form.previousElementSibling.querySelector('.edit-btn');
+            form.style.display = 'none';
+            editBtn.style.display = 'block';
+        });
+    });
+
+    // Load preferences from local storage
+    const preferences = StorageManager.get('userPreferences') || {};
+    const emailNotifications = document.querySelector('input[name="email-notifications"]');
+    const newsletter = document.querySelector('input[name="newsletter"]');
+    
+    if (preferences.emailNotifications) {
+        emailNotifications.checked = preferences.emailNotifications;
+    }
+    if (preferences.newsletter) {
+        newsletter.checked = preferences.newsletter;
+    }
+
+    // Handle preferences form submission
+    const preferencesForm = document.getElementById('preferences-form');
+    preferencesForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const preferences = {
+            emailNotifications: emailNotifications.checked,
+            newsletter: newsletter.checked
+        };
+        
+        StorageManager.set('userPreferences', preferences);
+        preferencesForm.style.display = 'none';
+        preferencesForm.previousElementSibling.querySelector('.edit-btn').style.display = 'block';
+        alert('Preferences saved successfully!');
+    });
+
+    // Handle account deletion
+    const deleteButton = document.getElementById('delete-account');
+    deleteButton.addEventListener('click', () => {
+        if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            // Add account deletion logic here
+            alert('Account deleted successfully!');
+            window.location.href = '/';
+        }
+    });
+});
+</script>
+{% endblock %}
